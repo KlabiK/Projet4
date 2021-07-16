@@ -11,6 +11,7 @@ if($_POST){
         $synopsis = strip_tags($_POST['synopsis']);
         
         addArticle($title, $content, $synopsis);
+   
     }
 }
 ?>
