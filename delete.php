@@ -2,8 +2,6 @@
 if(session_status() == PHP_SESSION_NONE){
    session_start();
  }
- var_dump($_GET);
- //die();
    //extract($_GET);
    $id = strip_tags($_GET['id']);
    require_once('config/functions.php');
@@ -11,8 +9,6 @@ if(session_status() == PHP_SESSION_NONE){
 
 //verification article existe
 if(isset($_POST['suppr'])){
-    // var_dump($_POST);
-    // die();
     if(isset($_GET['id']) && !empty($_GET['id'])){
         require('config/connect.php');
 

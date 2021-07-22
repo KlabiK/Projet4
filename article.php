@@ -28,12 +28,12 @@ header('Location: index.php');
         }
         if(count($errors) == 0)
         {
-            $artName = $_GET['id'];
+            $articleId = $_GET['id'];
             $comment = addComment($id, $author, $comment);
             $_SESSION['message'] = 'Votre commentaire à été publié';
             unset($author);
             unset($comment);
-            header("Location: article.php?id=<?= $artName ?>");
+            header("Location: index.php?action=article&id= $articleId ");
         }
     }else{
 

@@ -2,79 +2,50 @@
 // Chargement des classes
 require_once('.\model/PostManager.php');
 require_once('.\model/CommentManager.php');
+require_once('.\model/UserManager.php');
 
-function listPosts()
+
+
+function listArticles() //recupere les articles
 {
     $postManager = new PostManager();// Création d'un objet
-    $posts = $postManager-> getPosts();// Appel d'une fonction de cet objet
+    $articles = $postManager-> getArticles();// Appel d'une fonction de cet objet
 
-    require('.\view/frontend/listPostsView.php');
+    require('.\view/frontend/articlesListView.php');
 }
-
-function post()
+function article()
 {
+
     $postManager = new PostManager();
     $commentManager = new CommentManager();
-
-    $post =$postManager-> getPost($_GET['id']);
-    $commentaires = $commentManager-> getComments($_GET['id']);
-
-    require('.\view/frontend/postView.php');
+    $comments = $commentManager-> getComments($_GET['id']);
+    $article = $postManager-> getArticle($_GET['id']);
+ 
+    require('.\view/frontend/articleView.php');
 }
-
-
-
-// FONCTION QUI RECUPERE TOUS LES ARTICLES
-function getArticles()
+function addArticle()
 {
-    $req = $bdd->prepare('SELECT id, title,synopsis date FROM articles ORDER BY id DESC');
-    $req->execute();
-    $data = $req->fetchAll(PDO::FETCH_OBJ);
-    return $data;
-    $req->closeCursor();
+    $postManager = new PostManager();
+    $article = $postManager-> addArticle($_POST['title'], $_POST['content'], $_POST['synopsis']);
 }
-// FONCTION QUI RECUPERE UN ARTICLE
-function getArticle($id)
+function home()
 {
-    $req = $bdd->prepare('SELECT * FROM articles WHERE id = ?');
-    $req->execute(array($id));
-    if ($req->rowCount() == 1) {
-        $data = $req->fetch(PDO::FETCH_OBJ);
-        return $data;
-    } else
-        header('Location: index.php');
-    $req->closeCursor();
+    require('.\view/frontend/homeView.php');
 }
-// FONCTION QUI AJOUTE UN COMMENTAIRE
-function addComment($articleId, $author, $comment)
+function signaler()
 {
-    $req = $bdd->prepare('INSERT INTO comments(articleId, author, comment, date) VALUES (?, ?, ?, NOW())');
-    $req->execute(array($articleId, $author, $comment));
-    $req->closeCursor();
+$commentManager = new CommentManager();
+$signalCom = $commentManager->signaleCom($_GET['id']);
+require('.\view/frontend/signaleView.php');
 }
-// FONCTION QUI RECUPERE LES COMMENTAIRES D'UN ARTICLE
-function getComment($id)
+function addCom()
 {
-    $req = $bdd->prepare('SELECT * FROM comments WHERE articleId = ? ORDER BY date DESC');
-    $req->execute(array($id));
-    $data = $req->fetchAll(PDO::FETCH_OBJ);
-    return $data;
-    $req->closeCursor();
+$commentManager = new CommentManager();
+$addCom = $commentManager->addComment($_GET['id'], $_POST['author'], $_POST['comment']);
 }
-function getSignalComment($id){
-    $req = $bdd->prepare('SELECT * FROM comments WHERE id = ?');
-    $req->execute(array($id));
-    $data = $req->fetch(PDO::FETCH_OBJ);
-    return $data;
-    $req->closeCursor();
+function user()
+{
+$userManager = new UserManager();
+$user = $userManager->user();
 
 }
-//FONCTION QUI AJOUTE UN ARTICLE
-function addArticle($title, $content, $synopsis)
-{
-    $req = $bdd->prepare('INSERT INTO articles( title, content, synopsis, date) VALUES( ?, ?, ?, NOW())');
-    $req->execute(array($title, $content, $synopsis));
-    $req->closeCursor();
-    $_SESSION['message'] = "Votre chapitre à bien été ajouté";
-}   
-

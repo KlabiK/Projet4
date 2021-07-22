@@ -1,21 +1,31 @@
 <?php
-require_once('.\model/Manager.php');
+require_once('Manager.php');
 class CommentManager extends Manager
 {
-    public function getComments($idBillet)
-    {
-        $db =$this-> dbConnect();
-        $commentaires = $db->prepare('SELECT id, auteur, commentaire, DATE_FORMAT(date_commentaire, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM commentaires WHERE id_billet = ? ORDER BY date_commentaire DESC');
-        $commentaires->execute(array($idBillet));
-
-        return $commentaires;
-    }
-    public function postComment($idBillet, $auteur, $commentaire)
-    {
-        $db = $this->dbConnect();
-        $commentaires = $db->prepare('INSERT INTO commentaires(id_billet, auteur, commentaire, date_commentaire) VALUES(?, ?, ?, NOW())');
-        $affectedLines = $commentaires->execute(array($idBillet, $auteur, $commentaire));
-
-        return $affectedLines;
-    }
+    function getComments($id)
+{
+    $bdd = $this-> bddConnect();
+    $req = $bdd->prepare('SELECT * FROM comments WHERE articleId = ? ORDER BY date DESC');
+    $req->execute(array($id));
+    $data = $req->fetchAll(PDO::FETCH_OBJ);
+    return $data;
+    $req->closeCursor();
+}
+ function signaleCom($id)
+ {
+    $bdd = $this-> bddConnect();
+    $req = $bdd->prepare('SELECT * FROM comments WHERE id = ?');
+    $req->execute(array($id));
+    $data = $req->fetch(PDO::FETCH_OBJ);
+    return $data;
+    $req->closeCursor();
+ }
+ function addComment($articleId, $author, $comment)
+{
+    $bdd = $this-> bddConnect();
+    $req = $bdd->prepare('INSERT INTO comments(articleId, author, comment, date) VALUES (?, ?, ?, NOW())');
+    $req->execute(array($articleId, $author, $comment));
+    $req->closeCursor();
+}
+   
 }

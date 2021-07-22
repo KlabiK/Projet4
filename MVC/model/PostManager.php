@@ -1,23 +1,36 @@
 <?php
-require_once('.\model/Manager.php');
+require_once('Manager.php');
 class PostManager extends Manager
 {
-    public function getPosts()
-    {
-        $db = $this-> dbConnect();
-        $req = $db->query('SELECT id, titre, contenu, DATE_FORMAT(date_creation, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM billets ORDER BY date_creation DESC LIMIT 0, 5');
+    public function getArticles()
+{
+    $bdd = $this-> bddConnect();
+    $req = $bdd->prepare('SELECT id, title,synopsis date FROM articles ORDER BY id DESC');
+    $req->execute();
+    $data = $req->fetchAll(PDO::FETCH_OBJ);
 
-        return $req;
-    }
-
-    public function getPost($idBillet)
-    {
-        $db = $this->dbConnect();
-        $req = $db->prepare('SELECT id, titre, contenu, DATE_FORMAT(date_creation, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM billets WHERE id = ?');
-        $req->execute(array($idBillet));
-        $post = $req->fetch();
-
-        return $post;
-    }
-
+    return $data;
+    $req->closeCursor();
+}
+public function getArticle($id)
+{
+    $bdd = $this-> bddConnect();
+    $req = $bdd->prepare('SELECT * FROM articles WHERE id = ?');
+    $req->execute(array($id));
+    if ($req->rowCount() == 1) {
+        $data = $req->fetch(PDO::FETCH_OBJ);
+        return $data;
+    } else
+        header('Location: index.php');
+    $req->closeCursor();
+}
+//FONCTION QUI AJOUTE UN ARTICLE
+function addArticle($title, $content, $synopsis)
+{
+    $bdd = $this-> bddConnect();
+    $req = $bdd->prepare('INSERT INTO articles( title, content, synopsis, date) VALUES( ?, ?, ?, NOW())');
+    $req->execute(array($title, $content, $synopsis));
+    $req->closeCursor();
+    $_SESSION['message'] = "Votre chapitre à bien été ajouté";
+}   
 }
