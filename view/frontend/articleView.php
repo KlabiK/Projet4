@@ -6,13 +6,13 @@
             <a class="nav-link" href="index.php?action=home">Accueil</a>
         </li>
         <li class="nav-item active">
-            <a class="nav-link" href=".\index.php?action=listArticles">Chapitres</a>
+            <a class="nav-link" href="index.php?action=listArticles">Chapitres</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="connexion.php">Connexion</a>
+        <a class="nav-link" href="index.php?action=login">Connexion</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="register.php">Inscription</a>
+            <a class="nav-link" href="index.php?action=registerPage">Inscription</a>
         </li>
     </ul>
 <?php $menu = ob_get_clean(); ?>
@@ -51,14 +51,16 @@
         </div>
         <button class="btn btn-primary mb-4" type="submit">Envoyer</button>
     </form>
+    <?php if($comments){ ?>
     <h2>Commentaires :</h2>
     <?php
     foreach ($comments as $com) : ?>
         <h3><?= $com->author ?></h3>
         <time><?= $com->date ?></time>
         <p><?= $com->comment ?></p>
-        <a class="btn btn-danger mb-4" href=".\index.php?action=signaler&id=<?= $com->id ?>">Signaler</a>
-    <?php endforeach; ?>
+        <a class="btn btn-danger mb-4"  href=".\index.php?action=signaler&id=<?= $com->id ?>">Signaler</a>
+    <?php endforeach; 
+    }?>
 </div>
 <?php $content = ob_get_clean(); ?>
 

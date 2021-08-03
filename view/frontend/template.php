@@ -30,7 +30,6 @@
                         <li class="list-inline-item font-weight-bold">À propos</li>
                         <li class="list-inline-item font-weight-bold"> Vie privée</li>
                         <li class="list-inline-item font-weight-bold">Conditions d'utilisations</li>
-                        <li class="list-inline-item font-weight-bold"><a href="contact.php">Contact</a></li>
                     </ul>
                 </div>
             </div>

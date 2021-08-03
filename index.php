@@ -1,104 +1,194 @@
 <?php
- if(session_status() == PHP_SESSION_NONE){
+if(session_status() == PHP_SESSION_NONE){
     session_start();
   }
-?>
+require('controller/frontend.php');
 
-<!DOCTYPE html>
-    <html>
-        <head>
-            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-            <meta charset="UTF-8">
-            <title>Premier blog</title>
-        </head>
-        <body>
-             <div class="bg-dark">
-          <div class ="container">
-              <div class="row">      
-                <nav class="col navbar navbar-expand-lg navbar-dark">
-                   <a class="navbar-brand" href="index.php">Jean Forteroche</a>
-                    <div id="navbarContent" class="collapse navbar-collapse">
-                       <ul class="navbar-nav">
-                          <li class="nav-item active">
-                             <a class="nav-link" href="index.php">Accueil</a>
-                          </li>
-                          <li class="nav-item">
-                             <a class="nav-link" href="articlesList.php">Chapitres</a>
-                          </li>
-                          <li class="nav-item">
-                             <a class="nav-link" href="contact.php">Contact</a>
-                          </li>
-                       </ul>
-                   </div>
-                </nav>
-            </div>
-        </div>
-      </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-            <?php
-                 if(!empty($_SESSION['message'])){
-                    echo '<div class="alert alert-success" role="alert">'. $_SESSION['message'].'</div';
-                    $_SESSION['message'] = "";
-                 }
-                if(!empty($_SESSION['erreur'])){
-                        echo '<div class="alert alert-danger" role="alert">'. $_SESSION['erreur'].'</div';
-                        $_SESSION['erreur'] = "";
+
+if (isset($_GET['action'])) {
+    if ($_GET['action'] == 'listArticles') {
+        listArticles();
+    } elseif ($_GET['action'] == 'article') {
+        if (!isset($_GET['id']) or !is_numeric($_GET['id'])) {
+            header('Location: index.php?action=home');
+           
+        } else {
+            extract($_GET);
+            $id = strip_tags($_GET['id']);
+            article($id);
+
+            if (!empty($_POST)) {
+                extract($_POST);
+                $errors = array();
+                $author = strip_tags($author);
+                $comment = strip_tags($comment);
+                
+                if (empty($author)) {
+                    $_SESSION['erreur'] = 'Entrez un pseudo';
                 }
-                ?>
-            </div>
-        </div>
-    </div>
-            <div class="container">
-            <h2 class="text-center my-4">Biographie </h2>
-                <div class="row">
-                    <div class="col-4 my-4 mx-4">
-                    <img src="photo01.jpg" alt="Bootstrap" class="img-rounded" width="120%">
-                    </div>
-                    <div class="col-6 my-4 mx-5">
-                        <p>Saepissime igitur mihi de amicitia cogitanti maxime illud considerandum videri solet, utrum propter imbecillitatem atque inopiam desiderata sit amicitia, ut dandis recipiendisque meritis quod quisque minus per se ipse posset, id acciperet ab alio vicissimque redderet, an esset hoc quidem proprium amicitiae, sed antiquior et pulchrior et magis a natura ipsa profecta alia causa. Amor enim, ex quo amicitia nominata est, princeps est ad benevolentiam coniungendam. Nam utilitates quidem etiam ab iis percipiuntur saepe qui simulatione amicitiae coluntur et observantur temporis causa, in amicitia autem nihil fictum est, nihil simulatum et, quidquid est, id est verum et voluntarium.</p>
-                    </div>
-                </div>
+                if (empty($comment)) {
+                    $_SESSION['erreur'] = 'Entrez un commentaire';
+                }
+                if (count($errors) == 0) {
+                    $articleId = $_GET['id'];
+                    $comment = addCom($id, $author, $comment);
+                    $_SESSION['message'] = 'Votre commentaire à été publié';
+                    unset($author);
+                    unset($comment);
+                    header("Location: index.php?action=article&id=$articleId");
+                    unset($articleId);
+                    
+                }
+            }
+        }
+    } elseif ($_GET['action'] == 'home') {//Accueil
+        home();
+    } elseif ($_GET['action'] == 'signaler') {// Signalement Commentaire
+        if (!isset($_GET['id']) or !is_numeric($_GET['id'])) {
+            header('Location: index.php?action=home');
+        } else {
+            extract($_GET);
+            $signalId = strip_tags($_GET['id']);
+            signaler($signalId);
+        }
+    }elseif($_GET['action'] == 'editSignal'){// Retrait Signalement
+        if (!isset($_GET['id']) or !is_numeric($_GET['id'])) {
+            header('Location: index.php?action=home');
+        } else {
+            extract($_GET);
+            $id = strip_tags($_GET['id']);
+            editSignal($id);
+            header('Location: index.php?action=admin');
+            $_SESSION['message'] = "Signalement retiré avec succès";
+        }
+        
+    }elseif($_GET['action'] == 'supprSignal'){// Suppression Commentaire signalé
+        if (!isset($_GET['id']) or !is_numeric($_GET['id'])) {
+            header('Location: index.php?action=home');
+        } else {
+            extract($_GET);
+            $id = strip_tags($_GET['id']);
+            supprSignalCom($id);
+            header('Location: index.php?action=admin');
+            $_SESSION['erreur'] = "Commentaire supprimé avec succès";
+        }
+      
+    } elseif ($_GET['action'] == 'login'){//Page connexion
+        login();
+    } elseif($_GET['action'] == 'connect'){ //Connexion User
+       
+        if(isset($_POST['login']) && isset($_POST['password']))
+        {
+            $login = htmlspecialchars($_POST['login']);
+            $password = htmlspecialchars($_POST['password']);
+            userConnect($login);       
+        }home();
+    }elseif ($_GET['action'] == 'registerPage'){//Page Inscription
+        register();
+       
+    }elseif ($_GET['action'] == 'register'){//Inscription
+        if(isset($_POST))
+        {
+            $erreurs = array();
+            $login = htmlspecialchars($_POST['login']);
+            $password = htmlspecialchars($_POST['password']);
+            $passwordRetype = htmlspecialchars($_POST['password_retype']);
+            
+            if(!empty($login) && preg_match('/^[a-zA-Z0-9_]+$/',$login))
+            {
+                if(existUser($_POST['login']) == 0)
+                {
+                    if(!empty($password) && $password == $passwordRetype)
+                    {
+                        if (empty($erreurs)) {  
+                            successRegister();
+                            header('Location: index.php?action=login');    
+                        }
+                    }
+                    else{
+                        header('Location: index.php?action=register'); 
+                        $_SESSION['erreur'] = 'Veuillez saisir un mot de passe valide';
+                    }
+                }else{
+                    header('Location: index.php?action=register'); 
+                    $_SESSION['erreur'] = 'Ce login est déjà pris';
+                }
 
-            </div>
-    </div>
-    <div class="container">
-            <h2 class="text-center">Oeuvres</h2>
-                <div class="row">
+                   
+            }else {
+                header('Location: index.php?action=register'); 
+                $_SESSION['erreur'] = "Votre login n'est pas valide";
+            }
 
-                    <div class="col my-4">
-                        <p>Saepissime igitur mihi de amicitia cogitanti maxime illud considerandum videri solet, utrum propter imbecillitatem atque inSaepissime igitur mihi de amicitia cogitanti maxime illud considerandum videri solet, utrum propter imbecillitatem atque inopiam desSaepissime igitur mihi de amicitia cogitanti maxime illud considerandum videri solet, utrum propter imbecillitatem atque inopiam desopiam desiderata sit amicitia, ut dandis recipiendisque meritis quod quisque minus per se ipse posset, id acciperet ab alio vicissimque redderet, an esset hoc quidem proprium amicitiae, sed antiquior et pulchrior et magis a natura ipsa profecta alia causa. Amor enim, ex quo amicitia nominata est, princeps est ad benevolentiam coniungendam. Nam utilitates quidem etiam ab iis percipiuntur saepe qui simulatione amicitiae coluntur et observantur temporis causa, in amicitia autem nihil fictum est, nihil simulatum et, quidquid est, id est verum et voluntarium.</p>
-                    </div>
-                </div>
+        }else {
+            header('Location: index.php?action=register'); 
+            $_SESSION['erreur'] = 'Veuillez completer tous les champs';
+        }
+    }elseif($_GET['action'] == 'admin'){//Page admin
+        admin();
+    }elseif($_GET['action'] == 'addPage'){// Page Ajout Chapitre
+        addPage();
+    }elseif($_GET['action'] == 'editPage'){//Page UPDATE Chapitre
+        if(isset($_GET['id']) && !empty($_GET['id'])){
+            $id = strip_tags($_GET['id']);
+            $chapitre = articleToEdit($id);
+            if(!$chapitre){
+            $_SESSION['erreur'] == "ID invalide";   
+            }
+        }else{
+            $_SESSION['erreur'] = "URL invalide";
+        }
+    }elseif($_GET['action'] == 'edit'){// UPDATE Chapitre
+            if($_POST){//verification des données à envoyer
+                if(isset($_POST['id']) && !empty($_POST['id'])
+                && isset($_POST['title']) && !empty($_POST['title'])
+                && isset($_POST['content']) && !empty($_POST['content'])
+                && isset($_POST['synopsis']) && !empty($_POST['synopsis'])){        
+                    //nettoyage des données à envoyer
+                    $id = strip_tags($_POST['id']);
+                    $title = strip_tags($_POST['title']);
+                    $content = strip_tags($_POST['content']);
+                    $synopsis = strip_tags($_POST['synopsis']);
+                    edit($id,$title,$content,$synopsis);
 
-            </div>
-    </div>
-    <div class="container">
-            <h2 class="text-center">Billet simple pour l'Alaska </h2>
-                <div class="row">
-                    <div class="col-6 my-4 mx-4">
-                        <p>Saepissime igitur mihi de amicitia cogitanti maxime illud considerandum videri solet, utrum propter imbecillitatem atque inopiam desiderata sit amicitia, ut dandis recipiendisque meritis quod quisque minus per se ipse posset, id acciperet ab alio vicissimque redderet, an esset hoc quidem proprium amicitiae, sed antiquior et pulchrior et magis a natura ipsa profecta alia causa. Amor enim, ex quo amicitia nominata est, princeps est ad benevolentiam coniungendam. Nam utilitates quidem etiam ab iis percipiuntur saepe qui simulatione amicitiae coluntur et observantur temporis causa, in amicitia autem nihil fictum est, nihil simulatum et, quidquid est, id est verum et voluntarium.</p>
-                    </div>
-                    <div class="col-4 my-4 mx-4">
-                       <img src="Alaska.jpg" alt="Bootstrap" class="img-rounded" width="120%">
-                    </div>
-
-                </div>
-    </div>
-<div class="jumbotron">
-   <div class="container">
-      <div class="row">
-         <div class="col text-center ">
-            <ul class="list-inline ">
-               <li class="list-inline-item font-weight-bold">À propos</li>
-               <li class="list-inline-item font-weight-bold"> Vie privée</li>
-               <li class="list-inline-item font-weight-bold">Conditions d'utilisations</li>
-               <li class="list-inline-item font-weight-bold"><a href="login.php">Admin</a></li>
-            </ul>
-         </div>     
-      </div>
-   </div>
-</div>
-        </body>
-    </html>
+                }else{
+                    $_SESSION['erreur'] = "Veuillez remplir tous les champs";
+                }
+            }
+      
+    }elseif($_GET['action'] == 'add'){// ADD Chapitre
+        if($_POST){
+            if(isset($_POST['content']) && !empty($_POST['content']) && isset($_POST['title']) && !empty($_POST['title'])&& $_POST['synopsis'] && !empty($_POST['synopsis'])){
+                $content = strip_tags($_POST['content']);
+                $title = strip_tags($_POST['title']);
+                $synopsis = strip_tags($_POST['synopsis']);
+                addArticle($title, $content, $synopsis);
+                admin();
+            }
+        }
+    }elseif($_GET['action'] == 'supprPage'){// DELETE Chapitre
+        extract($_GET);
+        $id = strip_tags($_GET['id']);
+        $article = callArticleToSuppr($id);
+     //verification article existe
+     if(isset($_POST['suppr'])){
+         if(isset($_GET['id']) && !empty($_GET['id'])){
+               if(!$article){
+                   $_SESSION['erreur'] = "ID invalide";
+                   header('Location: index.php');
+                   die();   
+               }
+            supprArticle($id);
+            header('Location:index.php?action=admin');
+            $_SESSION['message'] = "Chapitre supprimé avec succès";
+            die();
+             }
+     }else{
+         $_SESSION['erreur'] = "Veuillez cocher la case pour valider la suppression";
+         die();
+     }
+     
+    } else {
+        home();
+    }
+}

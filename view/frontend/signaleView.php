@@ -6,13 +6,13 @@
         <a class="nav-link" href="index.php?action=home">Accueil</a>
     </li>
     <li class="nav-item active">
-        <a class="nav-link" href=".\index.php?action=listArticles">Chapitres</a>
+        <a class="nav-link" href="index.php?action=listArticles">Chapitres</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="connexion.php">Connexion</a>
+        <a class="nav-link" href="index.php?action=listArticles">Connexion</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="register.php">Inscription</a>
+        <a class="nav-link" href="index.php?action=registerPage">Inscription</a>
     </li>
 </ul>
 <?php $menu = ob_get_clean(); ?>
