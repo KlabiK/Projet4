@@ -8,12 +8,24 @@
         <li class="nav-item ">
             <a class="nav-link" href="index.php?action=listArticles">Chapitres</a>
         </li>
+        <?php if(!isset($_SESSION['user'])){?>
         <li class="nav-item">
         <a class="nav-link" href="index.php?action=login">Connexion</a>
         </li>
         <li class="nav-item">
-        <a class="nav-link" href="index.php?action=registerPage">Inscription</a>
+            <a class="nav-link" href="index.php?action=registerPage">Inscription</a>
         </li>
+        <?php } ?>
+        <?php if($_SESSION['lvl']==1){?>
+        <li class="nav-item">
+        <a class="nav-link" href="index.php?action=admin">Administration</a>
+        </li>
+        <?php } ?>
+        <?php if(isset($_SESSION['user'])){?>
+        <li class="nav-item">
+        <a class="nav-link" href="index.php?action=logout">Déconnexion</a>
+        </li>
+        <?php } ?>
     </ul>
 <?php $menu = ob_get_clean(); ?>
 <?php ob_start(); ?>

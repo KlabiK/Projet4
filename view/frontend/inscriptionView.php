@@ -16,6 +16,7 @@
 <?php $menu = ob_get_clean(); ?>
 <?php ob_start(); ?>
 <div class="container">
+    <h1 class="text-center my-4">Inscription</h1>
     <?php
     if (!empty($_SESSION['message'])) {
         echo '<div class="alert alert-success" role="alert">' . $_SESSION['message'] . '</div';
@@ -23,10 +24,8 @@
     }elseif(!empty($_SESSION['erreur'])){
         echo '<div class="alert alert-danger" role="alert">' . $_SESSION['erreur'] . '</div';
         $_SESSION['erreur'] = "";
-
     }
     ?>
-    <h1 class="text-center my-4">Inscription</h1>
     <form action="index.php?action=register" method="post" class="my-3">
         <div class="form-group row-4">
             <input type="text" name="login" class="form-control" placeholder="Identifiant" required="required" autocomplete="off">

@@ -1,5 +1,5 @@
 <?php $title = 'Interface admin' ;?>
-<?php if($_SESSION['user'] = 1)
+<?php if($_SESSION['lvl'] ==1)
 { ?>
     <?php ob_start(); ?>
     <ul class="navbar-nav">
@@ -9,6 +9,11 @@
         <li class="nav-item">
             <a class="nav-link" href="index.php?action=listArticles">Chapitres</a>
         </li>
+        <?php if(isset($_SESSION['user'])){?>
+        <li class="nav-item">
+        <a class="nav-link" href="index.php?action=logout">Déconnexion</a>
+        </li>
+        <?php } ?>
     </ul>
     <?php $menu = ob_get_clean();?>
 
@@ -43,8 +48,8 @@
                             <tr>
                                 <td><?= $chapitre['title'] ?> </td>
                                 <td><?= $chapitre['synopsis'] ?> </td>
-                                <td><a href="index.php?action=editPage&id=<?= $chapitre['id'] ?>">Modifier /</a>
-                                    <a href="index.php?action=supprPage&id=<?= $chapitre['id'] ?>">Supprimer</a>
+                                <td><a href="index.php?action=editPage&id=<?= $chapitre['id'] ?>"class="btn btn-secondary my-2"> Modifier</a>
+                                    <a href="index.php?action=supprPage&id=<?= $chapitre['id'] ?>"class="btn btn-danger">Supprimer</a>
                                 </td>
                             </tr>
                         <?php
@@ -70,8 +75,8 @@
                                 <td><?= $chapitre['title'] ?> </td>
                                 <td><?= $com->author ?></td>
                                 <td><?= $com->comment ?> </td>
-                                <td><a href="index.php?action=editSignal&id=<?= $com->id ?>">Retrait signalement /</a>
-                                    <a href="index.php?action=supprSignal&id=<?= $com->id ?>">Supprimer</a>
+                                <td><a href="index.php?action=editSignal&id=<?= $com->id ?>" class="btn btn-secondary my-2">Retrait signalement</a>
+                                    <a href="index.php?action=supprSignal&id=<?= $com->id ?>" class="btn btn-danger">Supprimer</a>
                                 </td>
                             </tr>
                         <?php

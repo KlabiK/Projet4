@@ -1,16 +1,23 @@
 <?php $title = "Modifications"; ?>
 <?php ob_start(); ?>
 <ul class="navbar-nav">
-    <li class="nav-item active">
-        <a class="nav-link" href="index.php">Accueil</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="articlesList.php">Chapitres</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="contact.php">Contact</a>
-    </li>
-</ul>
+        <li class="nav-item active">
+            <a class="nav-link" href="index.php?action=home">Accueil</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="index.php?action=listArticles">Chapitres</a>
+        </li>
+        <?php if(isset($_SESSION['user'])){?>
+        <li class="nav-item">
+        <a class="nav-link" href="index.php?action=logout">Déconnexion</a>
+        </li>
+        <?php } ?>
+        <?php if($_SESSION['lvl']==1){?>
+        <li class="nav-item">
+        <a class="nav-link" href="index.php?action=admin">Administration</a>
+        </li>
+        <?php } ?>
+    </ul>
 <?php $menu = ob_get_clean(); ?>
 <?php ob_start(); ?>
 <div class="container mt-2">

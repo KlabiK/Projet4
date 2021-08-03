@@ -5,7 +5,6 @@ require_once('.\model/CommentManager.php');
 require_once('.\model/UserManager.php');
 
 
-
 function listArticles() //recupere les articles
 {
     $postManager = new PostManager(); // Création d'un objet
@@ -26,10 +25,10 @@ function home()
 {
     require('.\view/frontend/homeView.php');
 }
-function signaler()
+function signaler($id)
 {
     $commentManager = new CommentManager();
-    $signalCom = $commentManager->signaleCom($_GET['id']);
+    $signalCom = $commentManager->signaleCom($id);
 }
 function editSignal($id)
 {
@@ -44,7 +43,7 @@ function supprSignalCom($id)
 function addCom()
 {
     $commentManager = new CommentManager();
-    $addCom = $commentManager->addComment($_GET['id'], $_POST['author'], $_POST['comment']);
+    $addCom = $commentManager->addComment($_GET['id'], $_SESSION['user'], $_POST['comment']);
 }
 function userConnect($login){ //Connexion et redirection en fonction droits
     $userManager = new UserManager();
@@ -59,16 +58,22 @@ function userConnect($login){ //Connexion et redirection en fonction droits
                 if($user['type'] == '1')//admin
                 {
                     header('Location: index.php?action=admin');
+                    die();
                 }elseif($user['type'] == '0') //visiteur
                 {
                     header('Location: index.php?action=listArticles');
+                    die();
                 }else{
                     header('Location: index.php?action=home');
                 }
+            }else{
+            header('Location: index.php?action=login');
+            $_SESSION['erreur'] = "Identifiants incorrect";
             }
-            home();
+            header('Location: index.php?action=login');
+            $_SESSION['erreur'] = "Veuillez saisir vos identifiants";  
         } 
-        home();    
+       
 }
 function existUser($login){// Verification si user existe
     $userManager = new UserManager();
@@ -120,4 +125,9 @@ function articleToEdit($id){ // Recup chapitre pour UPDATE
     $postManager = new PostManager();
     $chapitre = $postManager->getArticle($id);
     require('.\view/frontend/editView.php');
+}
+function logout(){ // Déconnexion
+    session_start();
+    session_destroy();
+    header('Location:index.php?action=login');
 }

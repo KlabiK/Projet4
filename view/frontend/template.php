@@ -13,7 +13,7 @@
            <div class="container">
                <div class="row">  
                    <nav class="col navbar navbar-expand-lg navbar-dark">
-                    <a class="navbar-brand" href="index.php?action=home.php">Jean Forteroche</a>
+                    <a class="navbar-brand" href="index.php?action=home">Jean Forteroche</a>
                     <div id="navbarContent" class="collapse navbar-collapse">
                         <?= $menu ?>
                     </div>

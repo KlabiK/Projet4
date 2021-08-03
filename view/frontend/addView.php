@@ -7,6 +7,11 @@
         <li class="nav-item ">
             <a class="nav-link" href="index.php?action=listArticles">Chapitres</a>
         </li>
+        <?php if(isset($_SESSION['user'])){?>
+        <li class="nav-item">
+        <a class="nav-link" href="index.php?action=logout">Déconnexion</a>
+        </li>
+        <?php } ?>
     </ul>
 <?php $menu = ob_get_clean();?>
 <?php ob_start(); ?>

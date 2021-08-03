@@ -1,6 +1,9 @@
 <?php
 if(session_status() == PHP_SESSION_NONE){
     session_start();
+    if(!isset($_SESSION['lvl'])){
+    $_SESSION['lvl'] = 'echec';
+    }
   }
 require('controller/frontend.php');
 
@@ -20,22 +23,17 @@ if (isset($_GET['action'])) {
             if (!empty($_POST)) {
                 extract($_POST);
                 $errors = array();
-                $author = strip_tags($author);
                 $comment = strip_tags($comment);
                 
-                if (empty($author)) {
-                    $_SESSION['erreur'] = 'Entrez un pseudo';
-                }
                 if (empty($comment)) {
                     $_SESSION['erreur'] = 'Entrez un commentaire';
                 }
                 if (count($errors) == 0) {
                     $articleId = $_GET['id'];
-                    $comment = addCom($id, $author, $comment);
+                    $comment = addCom($id, $_SESSION['user'], $comment);
                     $_SESSION['message'] = 'Votre commentaire à été publié';
-                    unset($author);
                     unset($comment);
-                    header("Location: index.php?action=article&id=$articleId");
+                    //header("Location: index.php?action=article&id=$articleId");
                     unset($articleId);
                     
                 }
@@ -49,7 +47,10 @@ if (isset($_GET['action'])) {
         } else {
             extract($_GET);
             $signalId = strip_tags($_GET['id']);
+            $articleId = strip_tags($_GET['idArt']);
             signaler($signalId);
+            $_SESSION['erreur'] = 'Le commentaire à été signalé';
+            header("Location: index.php?action=article&id=$articleId");
         }
     }elseif($_GET['action'] == 'editSignal'){// Retrait Signalement
         if (!isset($_GET['id']) or !is_numeric($_GET['id'])) {
@@ -82,7 +83,7 @@ if (isset($_GET['action'])) {
             $login = htmlspecialchars($_POST['login']);
             $password = htmlspecialchars($_POST['password']);
             userConnect($login);       
-        }home();
+        }
     }elseif ($_GET['action'] == 'registerPage'){//Page Inscription
         register();
        
@@ -188,6 +189,8 @@ if (isset($_GET['action'])) {
          die();
      }
      
+    }elseif($_GET['action'] == 'logout'){
+        logout();
     } else {
         home();
     }
