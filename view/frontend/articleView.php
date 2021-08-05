@@ -49,8 +49,8 @@
         </div>
     </div>
 
-    <?php if(isset($_SESSION['user']) && $_SESSION['lvl'] == 0){?>
-    <form class="my-4" action="index.php?action=article&id=<?= $article->id ?>" method="POST">
+    <?php $id =$_GET['id']; if(isset($_SESSION['user']) && $_SESSION['lvl'] == 0){?>
+    <form class="my-4" action="index.php?action=article&id=<?=$id?>" method="POST">
         <div class="form-group">
             <label for="comment">Commentaire :</label><br />
             <textarea name="comment" id="comment" cols="30" rows="8" required></textarea>
@@ -62,7 +62,7 @@
     <h2>Commentaires :</h2>
     <?php
     foreach ($comments as $com) : ?>
-        <h3><?= $com->author ?></h3>
+        <h3><?= $com->login ?></h3>
         <time><?= $com->date ?></time>
         <p><?= $com->comment ?></p>
         <?php if(!($_SESSION['lvl'] == 'echec') && $com->signalement == 0 ){?>

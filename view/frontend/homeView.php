@@ -51,7 +51,7 @@
         <hr />
         <div class="row">
             <div class="col-4 my-4 mx-4">
-                <img src=".\.\public/images/photo01.jpg" alt="Bootstrap" class="img-rounded" width="120%">
+                <img src=".\.\public/images/photo01.jpg" alt="Bootstrap" class="img-rounded">
             </div>
             <div class="col-6 my-4 mx-5">
                 <p>Pauvre  Gringoire  !  le  fracas  de  tous  les  gros  doubles  pé-tards de la Saint-Jean, la décharge de vingt arquebuses à croc, la détonation de cette fameuse serpentine de la Tour de Billy, qui, lors du siège de Paris, le dimanche 29 septembre 1465, tua sept Bourguignons d’un coup, l’explosion de toute la poudre à canon emmagasinée à la porte du Temple, lui eût moins rudement dé-chiré  les  oreilles,  en  ce  moment  solennel  et  dramatique,  que  ce  peu  de  paroles  tombées  de  la  bouche  d’un  huissier  :  Son  Émi-nence monseigneur le cardinal de Bourbon. </p>
@@ -80,7 +80,7 @@
                 <p>Il  n’y  avait  donc  ni  haine  du  cardinal,  ni  dédain  de  sa  pré-sence,  dans  l’impression  désagréable  qu’elle  fit  à  Pierre  Grin-goire.  Bien  au  contraire  ;  notre  poète  avait  trop  de  bon  sens  et  une souquenille trop râpée pour ne pas attacher un prix particu-lier à ce que mainte allusion de son prologue, et en particulier la glorification du dauphin fils du lion de France, fût recueillie par une oreille éminentissime. Mais ce n’est pas l’intérêt qui domine dans  la  noble  nature  des  poètes.</p>
             </div>
             <div class="col-4 my-4 mx-4">
-                <img src=".\.\public/images/Alaska.jpg" alt="Bootstrap" class="img-rounded" width="120%">
+                <img src=".\.\public/images/Alaska.jpg" alt="Bootstrap" class="img-rounded">
             </div>
         </div>
     </div>

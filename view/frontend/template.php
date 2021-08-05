@@ -4,11 +4,12 @@
 <head>
     <meta charset="utf-8" />
     <title><?= $title ?></title>
-    <link href=".\.\public/css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href=".\.\public/css/style.css"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 
 <body>
+    <header>
     <div class="bg-dark">
            <div class="container">
                <div class="row">  
@@ -21,6 +22,7 @@
             </div>
         </div>
     </div>
+    </header>
     <?= $content ?>
     <div class="jumbotron footer">
         <div class="container">

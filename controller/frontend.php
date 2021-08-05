@@ -43,7 +43,7 @@ function supprSignalCom($id)
 function addCom()
 {
     $commentManager = new CommentManager();
-    $addCom = $commentManager->addComment($_GET['id'], $_SESSION['user'], $_POST['comment']);
+    $addCom = $commentManager->addComment($_GET['id'], $_SESSION['userId'], $_POST['comment']);
 }
 function userConnect($login){ //Connexion et redirection en fonction droits
     $userManager = new UserManager();
@@ -53,6 +53,7 @@ function userConnect($login){ //Connexion et redirection en fonction droits
             $passVerif = password_verify($_POST['password'],$user['password']);
             if ($passVerif== true) {
                 $_SESSION['user'] = $user['login'];
+                $_SESSION['userId'] = $user['id'];
                 $_SESSION['lvl'] = $user['type'];
                 
                 if($user['type'] == '1')//admin
@@ -89,6 +90,7 @@ function admin(){//Chargement Page admin
     $result = $postManager->arrayArticles();
     $data = $signalManager->signalList();
     require('.\view/frontend/adminView.php');
+  
 }
 function addPage(){//Vue Page Ajout
     require('.\view/frontend/addView.php');
@@ -118,8 +120,9 @@ function supprArticle($id){ //SUPPR chapitre
 function edit($id,$title,$content, $synopsis){ // UPDATE chapitre
     $postManager = new PostManager();
     $update = $postManager->update($id,$title,$content, $synopsis);
-    header('Location:index.php?action=admin ');
     $_SESSION['message'] = "chapitre modifié avec succés";
+    header('Location:index.php?action=admin ');
+ 
 }
 function articleToEdit($id){ // Recup chapitre pour UPDATE
     $postManager = new PostManager();

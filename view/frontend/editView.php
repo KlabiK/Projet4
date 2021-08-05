@@ -23,6 +23,7 @@
 <div class="container mt-2">
     <div class="row">
         <div class="col-12">
+            <h1 class="my-4 text-center">Modifications du Chapitre</h1>
             <?php
             if (!empty($_SESSION['message'])) {
                 echo '<div class="alert alert-success" role="alert">' . $_SESSION['message'] . '</div';
@@ -33,10 +34,9 @@
                 $_SESSION['erreur'] = "";
             }
             ?>
-            <h1 class="my-4 text-center">Modifications du Chapitre</h1>
             <form method="POST" action="index.php?action=edit">
                 <div class="form-group my-4 text-center">
-                    <label for="title">Titre</label>
+                    <h2 for="title">Titre</h2>
                     <input type="text" id="title" name="title" class="form-control" value="<?= $chapitre->title ?>">
 
                 </div>

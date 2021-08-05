@@ -72,8 +72,8 @@
                         foreach ($data as $com) {
                         ?>
                             <tr>
-                                <td><?= $chapitre['title'] ?> </td>
-                                <td><?= $com->author ?></td>
+                                <td><?= $com->title ?> </td>
+                                <td><?= $com->login ?></td>
                                 <td><?= $com->comment ?> </td>
                                 <td><a href="index.php?action=editSignal&id=<?= $com->id ?>" class="btn btn-secondary my-2">Retrait signalement</a>
                                     <a href="index.php?action=supprSignal&id=<?= $com->id ?>" class="btn btn-danger">Supprimer</a>

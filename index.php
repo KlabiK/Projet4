@@ -7,11 +7,10 @@ if(session_status() == PHP_SESSION_NONE){
   }
 require('controller/frontend.php');
 
-
 if (isset($_GET['action'])) {
-    if ($_GET['action'] == 'listArticles') {
+    if ($_GET['action'] == 'listArticles'){
         listArticles();
-    } elseif ($_GET['action'] == 'article') {
+    } elseif ($_GET['action'] == 'article'){//Lecture article et ajout commentaires
         if (!isset($_GET['id']) or !is_numeric($_GET['id'])) {
             header('Location: index.php?action=home');
            
@@ -22,20 +21,14 @@ if (isset($_GET['action'])) {
 
             if (!empty($_POST)) {
                 extract($_POST);
-                $errors = array();
                 $comment = strip_tags($comment);
                 
                 if (empty($comment)) {
                     $_SESSION['erreur'] = 'Entrez un commentaire';
-                }
-                if (count($errors) == 0) {
-                    $articleId = $_GET['id'];
-                    $comment = addCom($id, $_SESSION['user'], $comment);
+                }else{
+                    addCom($id, $_SESSION['userId'], $comment);
                     $_SESSION['message'] = 'Votre commentaire à été publié';
-                    unset($comment);
-                    //header("Location: index.php?action=article&id=$articleId");
-                    unset($articleId);
-                    
+                    unset($comment);                    
                 }
             }
         }
@@ -134,7 +127,7 @@ if (isset($_GET['action'])) {
             $id = strip_tags($_GET['id']);
             $chapitre = articleToEdit($id);
             if(!$chapitre){
-            $_SESSION['erreur'] == "ID invalide";   
+            $_SESSION['erreur'] = "ID invalide";   
             }
         }else{
             $_SESSION['erreur'] = "URL invalide";
