@@ -18,7 +18,7 @@
        <?php }?>
            <div class="container">
                <div class="row">
-                 <?php if($_SESSION['lvl']==1){?>  
+                 <?php if($_SESSION['lvl']==1){?>
         		 <nav class="col navbar navbar-expand-sm navbar-light">
                 <?php }else{?>
                    <nav class="col navbar navbar-expand-md navbar-dark">

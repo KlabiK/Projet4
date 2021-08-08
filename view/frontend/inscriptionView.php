@@ -33,7 +33,7 @@
             <input type="password" name="password_retype" class="form-control" placeholder="Re-tapez le mot de passe" required="required" autocomplete="off">
         </div>
         <div class="form-group">
-            <button type="submit" class="btn btn-primary my-4">S'inscrire</button>
+            <button type="submit" class="btn btn-info my-4">S'inscrire</button>
         </div>
     </form>
 </div>

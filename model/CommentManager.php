@@ -18,10 +18,10 @@ function getComments($id){ // Récuperation des commentaires
     $req->execute(array($id));
     $req->closeCursor();
  }
- function addComment($id, $author, $comment){ //Ajout commentaire
+ function addComment($articleId, $author, $comment){ //Ajout commentaire
     $bdd = $this-> bddConnect();
     $req = $bdd->prepare('INSERT INTO comments(comments.articleId, comments.author, comments.comment, comments.date)VALUES (?, ?, ?, NOW())');
-    $req->execute(array($id, $author, $comment));
+    $req->execute(array($articleId, $author, $comment));
     $req->closeCursor();
 }
 public function signalList(){ // Liste des commentaires signalés

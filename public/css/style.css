@@ -2,6 +2,12 @@
  position: relative;
  min-height: 100%;
 }
+.nav-link{
+  color:whitesmoke !important;
+}
+.menuadmin{
+  color:whitesmoke !important;
+}
 #content{
     width: 50%;
 }
@@ -24,7 +30,7 @@ padding-top: 15%;
 }
 header{
 	justify-content:space-around;
-  width: 100%;
+ 	width: 100%;
 	align-items:center;
 	position: fixed;
 	height: auto;
@@ -34,11 +40,11 @@ header{
   display: block;
 }
 .text-center{
-    text-align: center;
     margin: auto;
 }
 .titreHome{
     font-weight: bolder;
+    color: #138496;
 }
 div.bg-dark {
     margin-top: 0;
@@ -47,7 +53,7 @@ img{
   width: 100%;
 }
 .bg-light{
-  background-color:#e9ecef !important;
+  background-color:#138496 !important;
 }
 .jumbotron {
   position: absolute;
@@ -63,6 +69,15 @@ a.btn-info{
   color: #17a2b8;
   background-color: #fff;
   border-color: #17a2b8;
+}
+.suite{/*Bouton suite */
+  bottom: 0;
+  position: absolute;
+  left: 5%;
+  width: 90%;
+}
+.listArticles {
+ height: 150px; 
 }
 /*parametres pour petits ecrans, smartphones et tablettes */
 @media screen and (min-width: 200px) and (max-width: 1200px) 
@@ -97,6 +112,14 @@ a.btn-info{
   .btn{
   font-size:1.2em;
   }
+  .suite{
+   position: relative;
+    
+  }
+  h2{
+font-size: 3rem;
+font-weight: bold;
+}
   #connexionChamp{
     padding-top: 30%;
    height: auto; 
@@ -132,7 +155,7 @@ a.btn-info{
   display: flex;
  }
   .navbar-brand{
-   padding-bottom: 4%; 
+   padding-bottom: 10%; 
    font-size: 1.5em;
   }
     img{
@@ -151,4 +174,7 @@ a.btn-info{
     max-width: 90%;
     width: 100%;
   }
+  .listArticles {
+ height: 300px; 
+}
 }

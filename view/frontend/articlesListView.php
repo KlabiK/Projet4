@@ -35,10 +35,10 @@
                 <hr>
                 <div class="row align-items-center">
                     <?php foreach ($articles as $article) : ?>
-                        <div class="col-4">
+                        <div class="col-4 listArticles">
                             <h2><?= $article->title ?></h2>
                             <time><?= $article->date ?></time><br />
-                            <a class="form-control btn btn-info" href=".\index.php?action=article&id=<?= $article->id ?>">Lire le chapitre</a>
+                            <a class="form-control btn btn-info suite" href=".\index.php?action=article&id=<?= $article->id ?>">Lire le chapitre</a>
                         </div>
                     <?php endforeach; ?>
                 </div>

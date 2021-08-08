@@ -3,7 +3,7 @@
     <li class="nav-item ">
             <a class="nav-link" href="index.php?action=home">Accueil</a>
         </li>
-        <li class="nav-item active">
+        <li class="nav-item">
             <a class="nav-link" href="index.php?action=listArticles">Chapitres</a>
         </li>
         <?php if(!isset($_SESSION['user'])){?>
@@ -36,7 +36,7 @@
             <label>Veuillez saisir votre mot de passe :</label>
             <input class="form-control" type="password" name="password" autocomplete="off">
         </div>
-        <input class="btn btn-info" type="submit">
+        <button class="btn btn-info" type="submit">Se connecter</button>
     </form>
 </div>
 <?php $content = ob_get_clean();?>

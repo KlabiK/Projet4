@@ -14,23 +14,18 @@
         </li>
         <?php } ?>
     <?php $menu = ob_get_clean();?>
-
-    <?php ob_start(); ?>
-
+    <?php ob_start();?>
     <main class="container">
-       <?php
-                if (!empty($_SESSION['message'])) {
+       <?php if(!empty($_SESSION['message'])){
                     echo '<div class="alert alert-success" role="alert">' . $_SESSION['message'] . '</div';
                     $_SESSION['message'] = "";
                 }
-                if (!empty($_SESSION['erreur'])) {
+                if(!empty($_SESSION['erreur'])){
                     echo '<div class="alert alert-danger" role="alert">' . $_SESSION['erreur'] . '</div';
                     $_SESSION['erreur'] = "";
-                }
-                ?>
-        <div id="adminContainer"  class="row">
+                } ?>
+        <div id="adminContainer" class="row">
             <div class="col-10">
-            
                 <h1 class="text-center my-4">Billet simple pour l'Alaska</h1>
                 <a href="index.php?action=addPage" class="btn btn-info my-4">Ajouter un article</a>
                 <table class="table">
