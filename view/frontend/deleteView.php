@@ -1,6 +1,5 @@
 <?php $title = "Suppression"; ?>
 <?php ob_start(); ?>
-<ul class="navbar-nav">
    <li class="nav-item active">
       <a class="nav-link" href="index.php?action=home">Accueil</a>
    </li>
@@ -12,7 +11,6 @@
          <a class="nav-link" href="index.php?action=logout">Déconnexion</a>
       </li>
    <?php } ?>
-</ul>
 <?php $menu = ob_get_clean(); ?>
 <?php ob_start(); ?>
 <div class="container my-4">

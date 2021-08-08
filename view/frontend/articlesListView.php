@@ -1,7 +1,6 @@
 <?php $title = "Billet pour L'alaska"; ?>
 
 <?php ob_start(); ?>
-    <ul class="navbar-nav">
         <li class="nav-item ">
             <a class="nav-link" href="index.php?action=home">Accueil</a>
         </li>
@@ -26,14 +25,13 @@
         <a class="nav-link" href="index.php?action=logout">Déconnexion</a>
         </li>
         <?php } ?>
-    </ul>
 <?php $menu = ob_get_clean(); ?>
 
 <?php ob_start(); ?>
     <div class="container">
         <div class="row">
             <div class=" form-group text-center">
-                <h1 class="my-4">Chapitres</h1>
+                <h1 class="my-4">CHAPITRES</h1>
                 <hr>
                 <div class="row align-items-center">
                     <?php foreach ($articles as $article) : ?>

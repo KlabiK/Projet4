@@ -1,22 +1,154 @@
+	html{
+ position: relative;
+ min-height: 100%;
+}
 #content{
     width: 50%;
-    min-height: 300px;
-
+}
+#contenu{
+  padding-top: 10%; 
+ margin-bottom: 17%;
+}
+.formStyle{
+padding-top: 10%;
+}
+.active{
+  font-weight: bold;
 }
 #title{
     width: 50%;
 }
 
-h1, h2{
+#inscriptionPage{
+padding-top: 15%;
+}
+header{
+	justify-content:space-around;
+  width: 100%;
+	align-items:center;
+	position: fixed;
+	height: auto;
+	z-index: 1000;
+}
+.collapse:not(.show) {
+  display: block;
+}
+.text-center{
     text-align: center;
     margin: auto;
 }
-.footer {
-margin-bottom: 0rem;
+.titreHome{
+    font-weight: bolder;
 }
-.bg-dark {
+div.bg-dark {
     margin-top: 0;
 }
 img{
   width: 100%;
+}
+.bg-light{
+  background-color:#e9ecef !important;
+}
+.jumbotron {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  margin-bottom:0rem;
+}
+#connexionChamp{
+height: 700px;
+padding-top: 10%;
+}
+a.btn-info{
+  color: #17a2b8;
+  background-color: #fff;
+  border-color: #17a2b8;
+}
+/*parametres pour petits ecrans, smartphones et tablettes */
+@media screen and (min-width: 200px) and (max-width: 1200px) 
+{
+  body{
+  font-size:2.2em;
+  }
+  #contenu{
+ margin-bottom: 40%;
+}
+  input{
+ margin-top: 10%; 
+}
+  .adminContainer{
+    margin-right: 1%;
+	margin-left: 1%;
+  }
+  .navbar-expand-sm{
+  display: flex;
+  flex-flow: column;
+  }
+  .form-control{
+  font-size:1.2em;
+  }
+  .navbar-expand-md{
+    display: flex;
+  flex-flow: column;
+  }
+  li{
+    margin-left:3%;
+  }
+  .btn{
+  font-size:1.2em;
+  }
+  #connexionChamp{
+    padding-top: 30%;
+   height: auto; 
+   text-align: center;
+  } 
+  #menuadmin{
+    margin-bottom: 1%;
+  }
+  header{
+    position: relative;
+    line-height: 1.3rem;
+  }
+  .table td{
+   padding: 0;
+	vertical-align: top; 
+  }
+  .synopsis{
+   width: 100%; 
+  }
+	div.row{
+      display: block;
+  }
+  .col-6{
+    max-width: 100%;
+  }
+  div .col{
+  padding-top: 8%;
+  }
+  .navbar-expand-md .navbar-nav{
+  display: flex;
+ }
+   .navbar-expand-md navbar-dark{
+  display: flex;
+ }
+  .navbar-brand{
+   padding-bottom: 4%; 
+   font-size: 1.5em;
+  }
+    img{
+        display: none;
+    }
+ 	p{
+       width: 90%;
+      max-width: 90%;
+      text-align: left !important;
+    }
+  h1{
+   font-size:2.5em;
+  }
+  div.col-4{
+    display: block;
+    max-width: 90%;
+    width: 100%;
+  }
 }

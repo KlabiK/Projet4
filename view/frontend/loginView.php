@@ -1,6 +1,5 @@
 <?php $title = 'Connexion';?>
 <?php ob_start(); ?>
-    <ul class="navbar-nav">
     <li class="nav-item ">
             <a class="nav-link" href="index.php?action=home">Accueil</a>
         </li>
@@ -17,16 +16,16 @@
         <a class="nav-link" href="index.php?action=logout">Déconnexion</a>
         </li>
         <?php } ?>
-    </ul>
-
 <?php $menu = ob_get_clean();?>
 <?php ob_start(); ?>
-<div class="container">
+<div class="container" id="connexionChamp">
     <h1 class="text-center my-4">Connexion</h1>
     <?php if(!empty($_SESSION['erreur'])) {
                     echo '<div class="alert alert-danger" role="alert">' . $_SESSION['erreur'] . '</div';
-                    $_SESSION['erreur'] = "";
-                
+                    $_SESSION['erreur'] = "";                
+    }elseif (!empty($_SESSION['message'])) {
+        echo '<div class="alert alert-success" role="alert">' . $_SESSION['message'] . '</div';
+        $_SESSION['message'] = "";
     }?>
     <form action="index.php?action=connect" method="POST" class=" my-3">
         <div class="form-group row-4">
@@ -37,7 +36,7 @@
             <label>Veuillez saisir votre mot de passe :</label>
             <input class="form-control" type="password" name="password" autocomplete="off">
         </div>
-        <input class="btn btn-primary" type="submit">
+        <input class="btn btn-info" type="submit">
     </form>
 </div>
 <?php $content = ob_get_clean();?>

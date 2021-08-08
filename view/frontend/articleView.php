@@ -1,11 +1,10 @@
 <?php $title = "Article"; ?>
 
 <?php ob_start(); ?>
-    <ul class="navbar-nav">
         <li class="nav-item ">
             <a class="nav-link" href="index.php?action=home">Accueil</a>
         </li>
-        <li class="nav-item active">
+        <li class="nav-item active font-weight-bold">
             <a class="nav-link" href="index.php?action=listArticles">Chapitres</a>
         </li>
         <?php if(!isset($_SESSION['user'])){?>
@@ -26,13 +25,11 @@
         <a class="nav-link" href="index.php?action=logout">Déconnexion</a>
         </li>
         <?php } ?>
-      
-    </ul>
 <?php $menu = ob_get_clean(); ?>
 <?php ob_start();?>
 <div class="container">
    
-<a class="btn btn-info my-2"href=".\index.php?action=listArticles">Retour aux Chapitres</a>
+<a class="btn btn-info my-2" id="btnChapitres" href=".\index.php?action=listArticles">Retour aux Chapitres</a>
     <div class="row">
         <div class="col text-center ">
             <h1 class="my-4"><?= $article->title ?></h1>
@@ -49,8 +46,8 @@
         </div>
     </div>
 
-    <?php $id =$_GET['id']; if(isset($_SESSION['user']) && $_SESSION['lvl'] == 0){?>
-    <form class="my-4" action="index.php?action=article&id=<?=$id?>" method="POST">
+    <?php if(isset($_SESSION['user']) && $_SESSION['lvl'] == 0){?>
+    <form class="my-4" action="index.php?action=addCom&id=<?=$id?>" method="POST">
         <div class="form-group">
             <label for="comment">Commentaire :</label><br />
             <textarea name="comment" id="comment" cols="30" rows="8" required></textarea>

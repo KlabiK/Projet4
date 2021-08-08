@@ -1,7 +1,5 @@
 <?php $title = 'Page d\'Inscription'; ?>
-
 <?php ob_start(); ?>
-<ul class="navbar-nav">
     <li class="nav-item ">
         <a class="nav-link" href="index.php?action=home">Accueil</a>
     </li>
@@ -11,11 +9,9 @@
     <li class="nav-item">
         <a class="nav-link" href="index.php?action=login">Connexion</a>
     </li>
-</ul>
-
 <?php $menu = ob_get_clean(); ?>
 <?php ob_start(); ?>
-<div class="container">
+<div class="container" id="inscriptionPage">
     <h1 class="text-center my-4">Inscription</h1>
     <?php
     if (!empty($_SESSION['message'])) {
@@ -37,7 +33,7 @@
             <input type="password" name="password_retype" class="form-control" placeholder="Re-tapez le mot de passe" required="required" autocomplete="off">
         </div>
         <div class="form-group">
-            <button type="submit" class="btn btn-primary my-4">S'Inscrire</button>
+            <button type="submit" class="btn btn-primary my-4">S'inscrire</button>
         </div>
     </form>
 </div>

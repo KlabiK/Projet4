@@ -6,33 +6,33 @@ if(session_status() == PHP_SESSION_NONE){
     }
   }
 require('controller/frontend.php');
-
 if (isset($_GET['action'])) {
     if ($_GET['action'] == 'listArticles'){
         listArticles();
     } elseif ($_GET['action'] == 'article'){//Lecture article et ajout commentaires
         if (!isset($_GET['id']) or !is_numeric($_GET['id'])) {
-            header('Location: index.php?action=home');
-           
+            header('Location: index.php?action=home');           
         } else {
             extract($_GET);
             $id = strip_tags($_GET['id']);
             article($id);
-
-            if (!empty($_POST)) {
-                extract($_POST);
-                $comment = strip_tags($comment);
-                
-                if (empty($comment)) {
-                    $_SESSION['erreur'] = 'Entrez un commentaire';
-                }else{
-                    addCom($id, $_SESSION['userId'], $comment);
-                    $_SESSION['message'] = 'Votre commentaire à été publié';
-                    unset($comment);                    
-                }
+        }
+    }elseif($_GET['action'] == 'addCom'){
+        if (!empty($_POST)){
+            extract($_POST);
+            $comment = strip_tags($_POST['comment']);
+            
+            if (empty($comment)) {
+                $_SESSION['erreur'] = 'Entrez un commentaire';
+            }else{
+                $id = strip_tags($_GET['id']);
+                addCom($id, $_SESSION['userId'], $comment);
+                $_SESSION['message'] = 'Votre commentaire à été publié';   
+                header("Location: index.php?action=article&id=$id");   
+                unset($comment);                        
             }
         }
-    } elseif ($_GET['action'] == 'home') {//Accueil
+    }elseif ($_GET['action'] == 'home') {//Accueil
         home();
     } elseif ($_GET['action'] == 'signaler') {// Signalement Commentaire
         if (!isset($_GET['id']) or !is_numeric($_GET['id'])) {
@@ -100,20 +100,17 @@ if (isset($_GET['action'])) {
                         }
                     }
                     else{
-                        header('Location: index.php?action=register'); 
+                        header('Location: index.php?action=registerPage'); 
                         $_SESSION['erreur'] = 'Veuillez saisir un mot de passe valide';
                     }
                 }else{
-                    header('Location: index.php?action=register'); 
+                    header('Location: index.php?action=registerPage'); 
                     $_SESSION['erreur'] = 'Ce login est déjà pris';
-                }
-
-                   
+                }       
             }else {
                 header('Location: index.php?action=register'); 
                 $_SESSION['erreur'] = "Votre login n'est pas valide";
             }
-
         }else {
             header('Location: index.php?action=register'); 
             $_SESSION['erreur'] = 'Veuillez completer tous les champs';
@@ -125,10 +122,7 @@ if (isset($_GET['action'])) {
     }elseif($_GET['action'] == 'editPage'){//Page UPDATE Chapitre
         if(isset($_GET['id']) && !empty($_GET['id'])){
             $id = strip_tags($_GET['id']);
-            $chapitre = articleToEdit($id);
-            if(!$chapitre){
-            $_SESSION['erreur'] = "ID invalide";   
-            }
+            articleToEdit($id);
         }else{
             $_SESSION['erreur'] = "URL invalide";
         }
@@ -157,6 +151,9 @@ if (isset($_GET['action'])) {
                 $title = strip_tags($_POST['title']);
                 $synopsis = strip_tags($_POST['synopsis']);
                 addArticle($title, $content, $synopsis);
+                admin();
+            }else{
+                $_SESSION['erreur'] = "Ajout de l'Article impossible : tous les champs ne sont pas remplis";
                 admin();
             }
         }

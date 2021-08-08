@@ -1,6 +1,5 @@
 <?php $title = "Ajout d'un article"; ?>
-<?php ob_start(); ?>
-<ul class="navbar-nav ">
+<?php ob_start();?>
         <li class="nav-item">
             <a class="nav-link" href="index.php?action=home">Accueil</a>
         </li>
@@ -12,12 +11,10 @@
         <a class="nav-link" href="index.php?action=logout">Déconnexion</a>
         </li>
         <?php } ?>
-    </ul>
 <?php $menu = ob_get_clean();?>
 <?php ob_start(); ?>
 <div class="container">
     <div class="row">
-
     </div>
     <div class="my-2">
         <?php
@@ -28,7 +25,7 @@
         ?>
     </div>
     <div class="row">
-        <form method="POST" action="index.php?action=add" class="col-12">
+        <form method="POST" action="index.php?action=add"  class="col formStyle">
 
             <div class="form-group">
                 <input type="text" id="title" name="title" class="form-control text-center mt-4" placeholder="Nom du chapitre" required>

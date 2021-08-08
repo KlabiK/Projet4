@@ -1,6 +1,5 @@
-<?php $title = "Modifications"; ?>
-<?php ob_start(); ?>
-<ul class="navbar-nav">
+<?php $title = "Modifications";?>
+<?php ob_start();?>
         <li class="nav-item active">
             <a class="nav-link" href="index.php?action=home">Accueil</a>
         </li>
@@ -11,18 +10,17 @@
         <li class="nav-item">
         <a class="nav-link" href="index.php?action=logout">Déconnexion</a>
         </li>
-        <?php } ?>
+        <?php }?>
         <?php if($_SESSION['lvl']==1){?>
         <li class="nav-item">
         <a class="nav-link" href="index.php?action=admin">Administration</a>
         </li>
         <?php } ?>
-    </ul>
-<?php $menu = ob_get_clean(); ?>
-<?php ob_start(); ?>
-<div class="container mt-2">
+<?php $menu = ob_get_clean();?>
+<?php ob_start();?>
+<div class="container">
     <div class="row">
-        <div class="col-12">
+        <div class="col">
             <h1 class="my-4 text-center">Modifications du Chapitre</h1>
             <?php
             if (!empty($_SESSION['message'])) {

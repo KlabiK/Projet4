@@ -1,7 +1,5 @@
 <?php $title = "Signaler"; ?>
-
 <?php ob_start(); ?>
-<ul class="navbar-nav">
     <li class="nav-item ">
         <a class="nav-link" href="index.php?action=home">Accueil</a>
     </li>
@@ -14,12 +12,10 @@
     <li class="nav-item">
         <a class="nav-link" href="index.php?action=registerPage">Inscription</a>
     </li>
-</ul>
 <?php $menu = ob_get_clean(); ?>
 <?php ob_start(); ?>
 <div class="container">
     <?php
-
     if (!empty($_SESSION['message'])) {
         echo '<div class="alert alert-success" role="alert">' . $_SESSION['message'] . '</div';
         $_SESSION['message'] = "";

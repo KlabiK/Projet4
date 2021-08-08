@@ -1,8 +1,6 @@
- <?php $title = "Billet pour L'alaska"; ?>
-
+<?php $title = "Billet pour L'alaska"; ?>
 <?php ob_start(); ?>
-    <ul class="navbar-nav ">
-        <li class="nav-item active">
+        <li class="nav-item active font-weight-bold">
             <a class="nav-link" href="index.php?action=home">Accueil</a>
         </li>
         <li class="nav-item ">
@@ -26,7 +24,6 @@
         <a class="nav-link" href="index.php?action=logout">Déconnexion</a>
         </li>
         <?php } ?>
-    </ul>
 <?php $menu = ob_get_clean(); ?>
 <?php ob_start(); ?>
 <div class="container">
@@ -47,40 +44,50 @@
         </div>
     </div>
     <div class="container">
-        <h2 class=" text-center my-4" >Biographie </h2>
+        <h2 class=" text-center my-4 titreHome">BIOGRAPHIE</h2>
         <hr />
         <div class="row">
             <div class="col-4 my-4 mx-4">
-                <img src=".\.\public/images/photo01.jpg" alt="Bootstrap" class="img-rounded">
+                <img src="public/images/photo01.jpg" alt="Bootstrap" class="img-rounded">
             </div>
             <div class="col-6 my-4 mx-5">
-                <p>Pauvre  Gringoire  !  le  fracas  de  tous  les  gros  doubles  pé-tards de la Saint-Jean, la décharge de vingt arquebuses à croc, la détonation de cette fameuse serpentine de la Tour de Billy, qui, lors du siège de Paris, le dimanche 29 septembre 1465, tua sept Bourguignons d’un coup, l’explosion de toute la poudre à canon emmagasinée à la porte du Temple, lui eût moins rudement dé-chiré  les  oreilles,  en  ce  moment  solennel  et  dramatique,  que  ce  peu  de  paroles  tombées  de  la  bouche  d’un  huissier  :  Son  Émi-nence monseigneur le cardinal de Bourbon. </p>
-            </div>
-        </div>
-
+               <p>Né le 19 février 1976 à Herblay, dans le Val-d’Oise, Jean Forteroche fait au cours de son enfance de fréquents séjours aux États-Unis, à New York, à Denver, et surtout à Portland (Oregon), qui devient le cadre de L’âme du mal. Il suit le Cours Simon à Paris en parallèle de ses études. Après le bac, petits boulots, Lettres Modernes à la fac.
+                    En 1999, Jean écrit le 5° règne (qu’il ne soumet à aucun éditeur). Il devient libraire (avec un gilet vert) ce qui lui permet d’en savoir plus sur le monde de l’édition. Il s’inscrit également aux cours de criminologie dispensés par l’université Saint-Denis.
+                    En 2000, il est toujours libraire et il commence à écrire L’Ame du Mal. 2001, il finit d’écrire L’Ame du Mal, en novembre il rencontre Michel Lafon.</p>
+             </div>
     </div>
     <div class="container">
     <hr />
-        <h2 class="text-center">Oeuvres</h2>
+        <h2 class="text-center titreHome">BIBLIOGRAPHIE</h2>
         <hr />
         <div class="row">
 
             <div class="col my-4">
-                <p>Ce  n’est  pas  que  Pierre  Gringoire  craignît  monsieur  le  car-dinal ou le dédaignât. Il n’avait ni cette faiblesse ni cette outre-cuidance.  Véritable  éclectique,  comme  on  dirait  aujourd’hui,  Gringoire  était  de  ces  esprits  élevés  et  fermes,  modérés  et  cal-mes, qui savent toujours se tenir au milieu de tout (stare in di-midio  rerum),  et  qui  sont  pleins  de  raison  et  de  libérale  philo-sophie, tout en faisant état des cardinaux. Race précieuse et ja-mais  interrompue  de  philosophes  auxquels  la  sagesse,  comme  une  autre  Ariane,  semble  avoir  donné  une  pelote  de  fil  qu’ils  s’en vont dévidant depuis le commencement du monde à travers le labyrinthe des choses humaines. On les retrouve dans tous les temps,  toujours  les  mêmes,  c’est-à-dire  toujours  selon  tous  les  temps.</p>
-            </div>
+               <ul>
+                <li>Le 5° règne (Le Masque en 2003 Pocket en 2006, Le Masque en 2007)</li>
+                <li>Le sang du temps (Michel Lafon en 2005, Pocket en 2007)</li>
+                <li>Carnages (Pocket en 2006 – édition collector, Pocket en 2010)</li>
+                <li>La promesse des ténèbres (Albin Michel en 2009, Pocket en 2011)</li>
+                <li>L’empreinte sanglante (Fleuve Noir en 2009) Nouvelle intitulée « Le fracas de la viande chaude »</li>
+                <li> Que ta volonté soit faites (Albin Michel en 2015, Pocket 2016)</li>
+                <li>Un(e)secte (Albin Michel 2019, Pocket février 2021)</li>
+            </ul>
+          </div>
         </div>
 
     </div>
     <div class="container">
     <hr />
-        <h2 class="text-center">Billet simple pour l'Alaska </h2>
+        <h2 class="text-center titreHome">BILLET SIMPLE POUR L'ALASKA</h2>
         <hr />
         <div class="row">
             <div class="col-6 my-4 mx-4">
-                <p>Il  n’y  avait  donc  ni  haine  du  cardinal,  ni  dédain  de  sa  pré-sence,  dans  l’impression  désagréable  qu’elle  fit  à  Pierre  Grin-goire.  Bien  au  contraire  ;  notre  poète  avait  trop  de  bon  sens  et  une souquenille trop râpée pour ne pas attacher un prix particu-lier à ce que mainte allusion de son prologue, et en particulier la glorification du dauphin fils du lion de France, fût recueillie par une oreille éminentissime. Mais ce n’est pas l’intérêt qui domine dans  la  noble  nature  des  poètes.</p>
-            </div>
+                 <p>Miles Halter a seize ans mais n'a pas l'impression d'avoir vécu. Assoiffé d'expériences, il quitte le cocon familial pour le campus universitaire : ce sera le lieu de tous les possibles, de toutes les premières fois. Et de sa rencontre avec Alaska. La troublante, l'insaisissable Alaska Young, insoumise et fascinante.
+                    Venez et marchez sur la banquise avec Miles....
+                </p>
+              </div>
             <div class="col-4 my-4 mx-4">
-                <img src=".\.\public/images/Alaska.jpg" alt="Bootstrap" class="img-rounded">
+                <img src="public/images/Alaska.jpg" alt="Bootstrap" class="img-rounded">
             </div>
         </div>
     </div>

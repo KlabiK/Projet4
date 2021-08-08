@@ -1,8 +1,8 @@
 <?php
 // Chargement des classes
-require_once('.\model/PostManager.php');
-require_once('.\model/CommentManager.php');
-require_once('.\model/UserManager.php');
+require_once('model/PostManager.php');
+require_once('model/CommentManager.php');
+require_once('model/UserManager.php');
 
 
 function listArticles() //recupere les articles
@@ -10,7 +10,7 @@ function listArticles() //recupere les articles
     $postManager = new PostManager(); // Création d'un objet
     $articles = $postManager->getArticles(); // Appel d'une fonction de cet objet
 
-    require('.\view/frontend/articlesListView.php');
+    require('view/frontend/articlesListView.php');
 }
 function article($id)
 {
@@ -19,11 +19,11 @@ function article($id)
     $comments = $commentManager->getComments($id);
     $article = $postManager->getArticle($id);
 
-    require('.\view/frontend/articleView.php');
+    require('view/frontend/articleView.php');
 }
 function home()
 {
-    require('.\view/frontend/homeView.php');
+    require('view/frontend/homeView.php');
 }
 function signaler($id)
 {
@@ -82,25 +82,25 @@ function existUser($login){// Verification si user existe
     return $row;
 }
 function login(){// Charge Page Connexion
-    require('.\view/frontend/loginView.php');   
+    require('view/frontend/loginView.php');   
 }
 function admin(){//Chargement Page admin
     $postManager = new PostManager();
     $signalManager = new CommentManager();
     $result = $postManager->arrayArticles();
     $data = $signalManager->signalList();
-    require('.\view/frontend/adminView.php');
+    require('view/frontend/adminView.php');
   
 }
 function addPage(){//Vue Page Ajout
-    require('.\view/frontend/addView.php');
+    require('view/frontend/addView.php');
 }
 function addArticle($title,$content,$synopsis) {// Ajout chapitre
     $postManager = new PostManager();
     $article = $postManager->addArticle($title, $content, $synopsis);
 }
 function register() {//Charge vue register
-    require('.\view/frontend/inscriptionView.php');
+    require('view/frontend/inscriptionView.php');
 }
 function successRegister(){ // Enregistre nouvel Utilisateur
     $userManager = new UserManager();
@@ -109,7 +109,7 @@ function successRegister(){ // Enregistre nouvel Utilisateur
 function callArticleToSuppr($id){ // Recup chapitre à SUPPR
     $postManager = new PostManager();
     $article = $postManager->articleToSuppr($id);  
-    require('.\view/frontend/deleteView.php');
+    require('view/frontend/deleteView.php');
     return $article;
   
 }
@@ -127,7 +127,7 @@ function edit($id,$title,$content, $synopsis){ // UPDATE chapitre
 function articleToEdit($id){ // Recup chapitre pour UPDATE
     $postManager = new PostManager();
     $chapitre = $postManager->getArticle($id);
-    require('.\view/frontend/editView.php');
+    require('view/frontend/editView.php');
 }
 function logout(){ // Déconnexion
     session_start();
