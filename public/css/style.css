@@ -5,20 +5,20 @@
 .nav-link{
   color:whitesmoke !important;
 }
-.menuadmin{
+.menuadmin{/* logo*/
   color:whitesmoke !important;
 }
 #content{
     width: 50%;
 }
-#contenu{
+#contenu{/* corps de page */
   padding-top: 10%; 
  margin-bottom: 17%;
 }
-.formStyle{
+.formStyle{ /*formulaire page ADD article*/
 padding-top: 10%;
 }
-.active{
+.active{/* element actif menu*/
   font-weight: bold;
 }
 #title{
@@ -52,7 +52,7 @@ div.bg-dark {
 img{
   width: 100%;
 }
-.bg-light{
+.bg-light{/* background header */
   background-color:#138496 !important;
 }
 .jumbotron {
@@ -61,6 +61,9 @@ img{
   bottom: 0;
   margin-bottom:0rem;
 }
+#footerP{
+  font-weight: bold;
+} 
 #connexionChamp{
 height: 700px;
 padding-top: 10%;
@@ -166,6 +169,10 @@ font-weight: bold;
       max-width: 90%;
       text-align: left !important;
     }
+  #footerP{
+  width: 100%;
+  max-width: 100%;
+  }
   h1{
    font-size:2.5em;
   }

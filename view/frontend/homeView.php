@@ -55,13 +55,13 @@
                     En 1999, Jean écrit le 5° règne (qu’il ne soumet à aucun éditeur). Il devient libraire (avec un gilet vert) ce qui lui permet d’en savoir plus sur le monde de l’édition. Il s’inscrit également aux cours de criminologie dispensés par l’université Saint-Denis.
                     En 2000, il est toujours libraire et il commence à écrire L’Ame du Mal. 2001, il finit d’écrire L’Ame du Mal, en novembre il rencontre Michel Lafon.</p>
              </div>
+      </div>
     </div>
     <div class="container">
     <hr />
         <h2 class="text-center titreHome">BIBLIOGRAPHIE</h2>
         <hr />
         <div class="row">
-
             <div class="col my-4">
                <ul>
                 <li>Le 5° règne (Le Masque en 2003 Pocket en 2006, Le Masque en 2007)</li>
@@ -74,7 +74,6 @@
             </ul>
           </div>
         </div>
-
     </div>
     <div class="container">
     <hr />

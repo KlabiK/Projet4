@@ -30,10 +30,8 @@
                       </ul>
                     </div>
                 </nav>
-                 </nav>
-            </div>
-        </div>
-    </div>
+          </div>
+      </div>
     </div>
    </header>
     <div id="contenu">
@@ -43,11 +41,7 @@
         <div class="container">
             <div class="row mt-3">
                 <div class="col text-center ">
-                    <ul class="list-inline ">
-                        <li class="list-inline-item font-weight-bold">À propos</li>
-                        <li class="list-inline-item font-weight-bold"> Vie privée</li>
-                        <li class="list-inline-item font-weight-bold">Conditions d'utilisations</li>
-                    </ul>
+                 <p id="footerP">Site créé dans le cadre d'un projet étudiant</p>
                 </div>
             </div>
         </div>
